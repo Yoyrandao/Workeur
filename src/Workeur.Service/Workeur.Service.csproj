@@ -20,4 +20,9 @@
       <ProjectReference Include="..\Workeur.Common\Workeur.Common.csproj" />
       <ProjectReference Include="..\Workeur.External\Workeur.External.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+        <HintPath>..\..\..\..\..\Tools\AzFunctionTools\System.Configuration.ConfigurationManager.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 </Project>

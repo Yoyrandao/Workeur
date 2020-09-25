@@ -4,9 +4,9 @@ using AngleSharp.Dom;
 
 namespace Workeur.External.Parsers.Providers
 {
-	public class PostCommentsProvider : IWebElementProvider<int>
+	public class PostCommentsProvider : IWebElementProvider<string>
 	{
-		public int Provide(IElement domElement)
+		public string Provide(IElement domElement)
 		{
 			var supposedCommentElements = domElement
 			                              .GetElementsByClassName("zen-ui-comments-icon__bubble")
@@ -14,7 +14,7 @@ namespace Workeur.External.Parsers.Providers
 			
 			var comments = !supposedCommentElements.Any() ? 0 : int.Parse(supposedCommentElements.Single().Text());
 
-			return comments;
+			return comments.ToString();
 		}
 	}
 }

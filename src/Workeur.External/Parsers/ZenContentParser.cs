@@ -18,7 +18,7 @@ namespace Workeur.External.Parsers
 			IWebElementProvider<string> descriptionProvider,
 			IWebElementProvider<string> titleProvider,
 			IWebElementProvider<string> linkProvider,
-			IWebElementProvider<int>    commentsProvider)
+			IWebElementProvider<string> commentsProvider)
 		{
 			_contentProvider     = contentProvider;
 			_authorProvider      = authorProvider;
@@ -52,7 +52,7 @@ namespace Workeur.External.Parsers
 					Description = description,
 					Author      = author,
 					Link        = link,
-					Comments    = comments
+					Comments    = int.Parse(comments ?? "0")
 				});
 			}
 
@@ -63,11 +63,11 @@ namespace Workeur.External.Parsers
 		private readonly IWebElementProvider<string> _descriptionProvider;
 		private readonly IWebElementProvider<string> _titleProvider;
 		private readonly IWebElementProvider<string> _linkProvider;
-		private readonly IWebElementProvider<int>    _commentsProvider;
+		private readonly IWebElementProvider<string> _commentsProvider;
 
 		private readonly IContentProvider _contentProvider;
 		private readonly IBrowsingContext _context;
 
-		private const string ZEN_URL = "https://zen.yandex.ru/";
+		private const string ZEN_URL = "https://yandex.ru/";
 	}
 }
