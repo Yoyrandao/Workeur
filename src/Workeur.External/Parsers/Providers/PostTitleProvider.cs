@@ -9,8 +9,7 @@ namespace Workeur.External.Parsers.Providers
 		public string Provide(IElement domElement)
 		{
 			var supposedTitleElements = domElement
-			                            .GetElementsByClassName("card-text-clamp__text-content")
-			                            .Where(x => x.ClassList.Length == 1)
+			                            .GetElementsByClassName("specified-title")
 			                            .ToList();
 			
 			var title = !supposedTitleElements.Any()

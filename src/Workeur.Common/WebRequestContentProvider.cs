@@ -8,7 +8,7 @@ namespace Workeur.Common
 		public string GetContent(string url)
 		{
 			var request  = WebRequest.Create(url);
-			request.Timeout = 2000;
+			request.Timeout = 4000;
 			
 			var response = request.GetResponse();
 

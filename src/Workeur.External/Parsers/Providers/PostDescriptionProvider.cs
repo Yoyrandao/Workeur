@@ -9,8 +9,7 @@ namespace Workeur.External.Parsers.Providers
 		public string Provide(IElement domElement)
 		{
 			var supposedDescriptionElements = domElement
-			                                  .GetElementsByClassName("card-text-clamp__text-content")
-			                                  .Where(x => x.ClassList.Length == 2)
+			                                  .QuerySelectorAll(".clamp__visible-tokens._ellipsis")
 			                                  .ToList();
 
 			var description = !supposedDescriptionElements.Any()
