@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workeur.Common", "Workeur.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workeur.External.UnitTests", "Workeur.External.UnitTests\Workeur.External.UnitTests.csproj", "{CC6F2CAF-8540-41DD-8588-67B585BB5B0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workeur.Common.UnitTests", "Workeur.Common.UnitTests\Workeur.Common.UnitTests.csproj", "{3F6978C5-2AF6-4825-8958-CCEB28F2F909}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{CC6F2CAF-8540-41DD-8588-67B585BB5B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6F2CAF-8540-41DD-8588-67B585BB5B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6F2CAF-8540-41DD-8588-67B585BB5B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F6978C5-2AF6-4825-8958-CCEB28F2F909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6978C5-2AF6-4825-8958-CCEB28F2F909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6978C5-2AF6-4825-8958-CCEB28F2F909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6978C5-2AF6-4825-8958-CCEB28F2F909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

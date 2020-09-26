@@ -12,9 +12,7 @@ namespace Workeur.Service.Functions
 {
 	public class ProcessingWorker
 	{
-		public ProcessingWorker(
-			IPostRepository      repository,
-			IContentParser<Post> contentParser)
+		public ProcessingWorker(IPostRepository repository, IContentParser<Post> contentParser)
 		{
 			_repository    = repository;
 			_contentParser = contentParser;
