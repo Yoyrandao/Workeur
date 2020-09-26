@@ -30,7 +30,7 @@ stages:
       displayName: Test
       inputs:
         command: 'test'
-        arguments: --configuration $(BuildConfiguration) $(System.DefaultWorkingDirectory)/src/Workeur.sln
+        arguments: $(System.DefaultWorkingDirectory)/src/Workeur.sln
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
