@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using NUnit.Framework;
 
 using Workeur.Common;
+using Workeur.External.Models;
 using Workeur.External.Parsers;
 using Workeur.External.Parsers.Providers;
 
@@ -16,7 +17,7 @@ namespace Workeur.External.UnitTests.Parsers
 		public void Setup()
 		{
 			_target = new ZenContentParser(
-				new WebClientContentProvider(),
+				new WebRequestContentProvider(),
 				new PostAuthorProvider(),
 				new PostDescriptionProvider(),
 				new PostTitleProvider(),
@@ -27,9 +28,14 @@ namespace Workeur.External.UnitTests.Parsers
 		[Test]
  		public async Task GetTest()
         {
-	        var posts = (await _target.ParseAsync()).ToList();
-			
-			Assert.That(posts, Is.Not.Empty);
+	        var posts = new List<Post>();
+
+	        await foreach (var post in _target.ParseAsync())
+	        {
+		        posts.Add(post);
+	        }
+
+	        Assert.IsTrue(posts.Count != 0);
 		}
 
 		private ZenContentParser _target;

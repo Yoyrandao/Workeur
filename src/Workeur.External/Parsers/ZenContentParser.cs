@@ -30,13 +30,12 @@ namespace Workeur.External.Parsers
 			_context = BrowsingContext.New(Configuration.Default);
 		}
 
-		public async Task<IEnumerable<Post>> ParseAsync()
+		public async IAsyncEnumerable<Post> ParseAsync()
 		{
 			var content  = _contentProvider.GetContent(ZEN_URL);
 			var document = await _context.OpenAsync(request => request.Content(content));
 
 			var parsedPosts = document.QuerySelectorAll(".card-wrapper").ToList();
-			var posts       = new List<Post>();
 
 			foreach (var element in parsedPosts)
 			{
@@ -46,17 +45,15 @@ namespace Workeur.External.Parsers
 				var link        = _linkProvider.Provide(element);
 				var comments    = _commentsProvider.Provide(element);
 
-				posts.Add(new Post
+				yield return new Post
 				{
 					Title       = title,
 					Description = description,
 					Author      = author,
 					Link        = link,
 					Comments    = int.Parse(comments ?? "0")
-				});
+				};
 			}
-
-			return posts;
 		}
 
 		private readonly IWebElementProvider<string> _authorProvider;
@@ -68,6 +65,6 @@ namespace Workeur.External.Parsers
 		private readonly IContentProvider _contentProvider;
 		private readonly IBrowsingContext _context;
 
-		private const string ZEN_URL = "https://yandex.ru/";
+		private const string ZEN_URL = "https://zen.yandex.ru/";
 	}
 }

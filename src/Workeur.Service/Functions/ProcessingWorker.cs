@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Azure.WebJobs;
@@ -22,21 +21,20 @@ namespace Workeur.Service.Functions
 		}
 
 		[FunctionName("ProcessingWorker")]
-		public async Task RunAsync([TimerTrigger("0/30 * * * * *")] TimerInfo myTimer, ILogger log)
+		public async Task RunAsync([TimerTrigger("0/10 * * * * *")] TimerInfo myTimer, ILogger log)
 		{
 			log.LogInformation($"Function triggered at {DateTime.Now}.");
 			log.LogInformation($"Preparing for posts parsing.");
-			
-			var posts = _contentParser.ParseAsync().Result.ToArray();
-			
-			log.LogInformation($"Parsed {posts.Length} posts.");
-			
-			foreach (var post in posts)
+
+			var postsCount = 0;
+
+			await foreach (var post in _contentParser.ParseAsync())
 			{
 				_repository.Add(post);
+				postsCount++;
 			}
 			
-			log.LogInformation($"{posts.Length} added to repository.");
+			log.LogInformation($"{postsCount} added to repository.");
 			log.LogInformation($"Execution ended.");
 		}
 

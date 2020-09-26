@@ -9,13 +9,11 @@ namespace Workeur.External.Parsers.Providers
 	{
 		public string Provide(IElement domElement)
 		{
-			var href = domElement
-			                            .GetElementsByClassName("card-image-view-by-metrics__clickable")
-			                            .OfType<IHtmlAnchorElement>()
-			                            .Single()
-			                            .Href;
+			var hrefs = domElement
+			           .GetElementsByClassName("card-image-view-by-metrics__clickable")
+			           .OfType<IHtmlAnchorElement>().ToArray();
 
-			return href;
+			return hrefs.Length == 0 ? null : hrefs.First().Href;
 		}
 	}
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Workeur.Common;
@@ -21,7 +23,7 @@ namespace Workeur.Service
 	{
 		public override void Configure(IFunctionsHostBuilder builder)
 		{
-			builder.Services.AddTransient<IContentProvider, WebClientContentProvider>();
+			builder.Services.AddTransient<IContentProvider, WebRequestContentProvider>();
 			
 			builder.Services.AddTransient<PostLinkProvider>();
 			builder.Services.AddTransient<PostTitleProvider>();
@@ -38,9 +40,14 @@ namespace Workeur.Service
 					x.GetService<PostTitleProvider>(),
 					x.GetService<PostLinkProvider>(),
 					x.GetService<PostCommentsProvider>()));
+			
+			var configuration = new ConfigurationBuilder()
+			    .SetBasePath(builder.GetContext().ApplicationRootPath)
+				.AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+				.AddEnvironmentVariables()
+				.Build();
 
-			var connectionString = "";
-
+			var connectionString = configuration["WorkeurDatabase"] ?? Environment.GetEnvironmentVariable("WORKEUR_DATABASE");
 			builder.Services.AddTransient<ISqlQueryExecutor, SqlQueryExecutor>(
 				x => new SqlQueryExecutor(connectionString));
 
