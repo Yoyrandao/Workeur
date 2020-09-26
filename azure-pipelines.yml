@@ -30,9 +30,7 @@ stages:
       displayName: Test
       inputs:
         command: 'test'
-        projects: |
-          $(System.DefaultWorkingDirectory)/*.UnitTests*/*.csproj
-        arguments: --configuration $(BuildConfiguration)
+        arguments: --configuration $(BuildConfiguration) $(System.DefaultWorkingDirectory)/src/Workeur.sln
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
