@@ -23,7 +23,6 @@ namespace Workeur.Service.Functions
 		[FunctionName("ProcessingWorker")]
 		public async Task RunAsync([TimerTrigger("0/10 * * * * *")] TimerInfo myTimer, ILogger log)
 		{
-			log.LogInformation($"Function triggered at {DateTime.Now}.");
 			log.LogInformation($"Preparing for posts parsing.");
 
 			var postsCount = 0;
@@ -35,7 +34,6 @@ namespace Workeur.Service.Functions
 			}
 			
 			log.LogInformation($"{postsCount} added to repository.");
-			log.LogInformation($"Execution ended.");
 		}
 
 		private readonly IPostRepository      _repository;
