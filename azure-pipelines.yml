@@ -1,22 +1,10 @@
-# .NET Core Function App to Windows on Azure
-# Build a .NET Core function app and deploy it to Azure as a Windows function App.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - master
 
 variables:
-  # Azure Resource Manager connection created during pipeline creation
   azureSubscription: '7c40d0be-b574-4241-8c61-a4c3073c154a'
-
-  # Function app name
   functionAppName: 'workeur'
-
-  # Agent VM image name
   vmImageName: 'vs2017-win2016'
-
-  # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/Workeur.Service'
 
 stages:
